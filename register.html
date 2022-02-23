@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Register for bockplam" />
+    <link rel="stylesheet" href="./register.css" />
+    
+    <title>BockPlam registration page</title>
+  </head>
+  <body>
+    <header>
+      <a href="./index.html">
+        <h1>BockPlam</h1>
+      </a>
+    </header>
+    
+    <section class="form">
+      <form
+        action="./user.php"
+        method="POST"
+    
+        class="registration-form"
+      >
+        <fieldset class="form-field">
+          <div>
+
+            <h2>Create a new account</h2>
+            <p>It's quick and easy.</p>
+          </div>
+          <hr>
+          <div class="name-surname">
+            <div class="firstName">
+              <input
+                type="text"
+                name="firstName"
+                placeholder="First name"
+                required
+              />
+            </div>
+            <div class="surname">
+              <input
+                type="text"
+                name="surname"
+                placeholder="Surname"
+                required
+              />
+            </div>
+          </div>
+          <div class="num">
+            <input
+              type="text"
+              name="number"
+              id="number"
+              placeholder="Mobile number"
+              required
+            />
+          </div>
+          <div class="mail">
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Email address"
+              required
+            />
+
+          </div>
+          <div class="addre">
+            <input
+              type="text"
+              name="address"
+              id="address"
+              placeholder="Address"
+              required
+            />
+          </div>
+          
+          <!-- <div class="date-sec">
+            <span>Date of Birth</span>
+
+            <div class="date">
+              <div class='day'>
+                <select name="day" id="day">
+                  <option value="1">1</option>
+                  <option value="1">2</option>
+                  <option value="1">3</option>
+                  <option value="1">4</option>
+                  <option value="1">5</option>
+                  <option value="1">6</option>
+                  <option value="1">7</option>
+                  <option value="1">8</option>
+                  <option value="1">9</option>
+                  <option value="1">10</option>
+                  <option value="1">11</option>
+                  <option value="1">12</option>
+                  <option value="1">13</option>
+                  <option value="1">14</option>
+                  <option values="1">15</option>
+                  <option value="1">16</option>
+                </select>
+              </div>
+              <div class='month'>
+                <select name="month" id="month">
+                  <option value="0">January</option>
+                  <option value="1">February</option>
+                  <option value="2">March</option>
+                  <option value="1">April</option>
+                  <option value="1">May</option>
+                  <option value="1">June</option>
+                </select>
+              </div>
+              <div class='year'>
+                <select name="year" id="year">
+                  <option value="1">2013</option>
+                  <option value="1">2014</option>
+                  <option value="1">2015</option>
+                  <option value="1">2015</option>
+                  <option value="1">2016</option>
+                  <option value="1">2017</option>
+                  <option value="1">2018</option>
+                  <option value="1">2019</option>
+                  <option value="1">2020</option>
+                  <option value="1">2021</option>
+                  <option value="1">2022</option>
+                  
+                </select>
+              </div>
+             
+
+            </div> -->
+
+        
+
+          </div>
+          <div id="gender">
+            <span>Gender</span>
+            <div class="gender">
+              <button id="female">
+                Female
+                <input type="radio" name="gender" id="Female" value="Female" />
+              </button>
+              <button id="male">
+                Male
+                <input type="radio" name="gender" id="Male" value="Male" />
+              </button>
+              <button id="custom">
+                Custom
+                <input type="radio" name="gender" id="Custom" value="Non-Binary" />
+              </button>
+            </div>
+          </div>
+          <div id="marital-status">
+            <span>Marital Status</span>
+            <div class="maritals">
+              <button id="Married">
+                Married
+                <input type="radio" name="marital-status" id="married" value="Female" />
+              </button>
+              <button id="Single">
+                Single
+                <input type="radio" name="marital-status" id="single" value="Single" />
+              </button>
+              <button id="Devoiced">
+                Devoiced
+                <input type="radio" name="marital-status" id="devoiced" value="Devoiced" />
+              </button>
+            </div>
+            
+            <div class="S-orign">
+              <label for= 'state'>State of Origin: </label>
+              <select name="State-Of-Origin" id="state" >
+                <option value=""> Select your State of origin</option>
+                <option value="Abia">Abia</option>
+              </select>
+            </div>
+            </div>
+          </div>
+            <div class= "hobbies" >
+              <span>Hobbies</span>
+              <div id='hobby-list'>
+              <span class='hob'>
+              <label for="hob1">Dancing</label>
+              <input type="checkbox" name="hobbies" value ='dancing' id="hob1">
+            </span>
+            <span class='hob'>
+              <label for="hob2">Blogging</label>
+              <input type="checkbox" name="hobbies" value ='Blogging' id="hob2">
+            </span>
+            <span class='hob'>
+              <label for="hob3">writing</label>
+              <input type="checkbox" name="hobbies" value ='writing' id="hob3">
+            </span>
+            </div>
+            </div>
+            <div class="password">
+              <input
+                type="password"
+                name="passwrd1"
+                id="pass"
+                placeholder="Enter password"
+                required
+              />
+              </div>
+              <div class="password">
+                <input
+                  type="password"
+                  name="passwrd2"
+                  id="pass"
+                  placeholder="Re-Enter password"
+                  required
+                />
+  
+            </div>
+            <hr>
+          <p id="terms">
+            By clicking Sign Up, you agree to our <a href="#">Terms</a> 
+            ,<a href="#">Data Policy</a> and
+            <a href="#">Cookie Policy</a> Cookie Policy. You may receive SMS
+            notifications from us and can opt out at any time.
+          </p>
+          <button type="submit" id='signup'>Sign up</button>
+          <p><a href="./login.html" target="_self">Already have an account?</a></p>
+        </fieldset>
+      </form>
+    </section>
+     </body>
+</html>
