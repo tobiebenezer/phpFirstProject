@@ -25,14 +25,14 @@
     <main>
     <section>
     <div class="top">
-    <span><img src="" alt="profile icon"> <h2>My Profile</h2></span>
+    <span><img id="icon" src="./images/account.png" alt="profile icon"> <span id="text">My Profile </span> </span>
     </div>
     <div class="body">
         <div class='profile-table'>
             <div class="profile-pic">
                 <div>
 
-                    <img src="" alt="Profile Avatar">
+                    <img id='avatar' src="./images/pexels-creation-hill-1681010.jpg" alt="Profile Avatar">
                     <p> <span>Joe Doe</span> </br>
                     You are welcome</p>
                 </div>
