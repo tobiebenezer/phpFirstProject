@@ -1,0 +1,153 @@
+/* Global style */
+* {
+  border: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  background: whitesmoke;
+  height: 100%;
+}
+
+h1 {
+  font-size: 4rem;
+}
+h2 {
+  font-style: 6rem;
+}
+h3 {
+  font-size: 2.5rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+/* Navigation */
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 10vh;
+  padding: 1rem 1rem;
+  position: sticky;
+  top: 0%;
+  color: white;
+  background: rgb(84, 63, 199);
+}
+
+.logo {
+  flex: 1 1 20rem;
+}
+nav ul {
+  flex: 1 2 20rem;
+  display: flex;
+  justify-items: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+nav a {
+  color: white;
+}
+nav ul li {
+  flex: 1 1 5rem;
+}
+
+/* body style */
+.top {
+  padding: 1rem;
+  background: rgb(84, 63, 199);
+  height: 16vh;
+  color: whitesmoke;
+}
+
+.body {
+  background: whitesmoke;
+  height: 59vh;
+}
+/* Profile style */
+.profile-table {
+  height: 60vh;
+  width: 80vw;
+  border-radius: 1.5rem;
+  margin: auto;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -25%);
+  background: white;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  transform: translateX(-50%);
+  -webkit-border-radius: 1.5rem;
+  -moz-border-radius: 1.5rem;
+  -ms-border-radius: 1.5rem;
+  -o-border-radius: 1.5rem;
+}
+.profile-pic {
+  position: relative;
+  flex: 1 1 20rem;
+}
+.profile-pic div {
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, -150%);
+  -webkit-transform: translate(-50%, -150%);
+  -moz-transform: translate(-50%, -150%);
+  -ms-transform: translate(-50%, -150%);
+  -o-transform: translate(-50%, -150%);
+  padding-bottom: 1rem;
+}
+.profile-items {
+  flex: 7 1 20rem;
+}
+
+/* table style */
+table {
+  padding-right: 3rem;
+  width: 100%;
+}
+tr,
+td {
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* media query */
+@media screen and (max-width: 500px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  table {
+    padding: 0.5rem;
+  }
+  tr,
+  td {
+    padding: 5px;
+  }
+  .profile-pic div {
+    transform: translate(-50%, 0%);
+    -webkit-transform: translate(-50%, 0%);
+    -moz-transform: translate(-50%, 0%);
+    -ms-transform: translate(-50%, 0%);
+    -o-transform: translate(-50%, 0%);
+  }
+}
