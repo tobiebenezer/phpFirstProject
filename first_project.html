@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<head>
+    <title>Sign Up Page</title>
+    <link rel="stylesheet" href="project.css">
+</head>
+<body class="body">
+    <div class="container">
+    <h1> SIGN UP</h1>
+    <form class="forms">
+        <div class="d1">
+        
+        <input type ="text" id="firstname" name ="firstname" placeholder="enter full name"></br>
+        
+       
+        
+        <input type="email" id="email" name = "email" placeholder="enter your email"></br>
+        
+        <input type ="text" id="phoneno" name ="phoneno" placeholder="phone number"></br>
+        </div>
+        <div class="d2">
+            <h2>Gender</h2>
+        <input type="radio" id = "male" name ="user_gender"
+        value="MALE">
+        <label class="r1" for="male">Male</label></br>
+        <input type="radio" id="female" name ="user_gender" value="FEMALE"/>
+        <label class="r2" for="female">Female</label></br>
+        <input type="radio" id="nonbinary" name="user_gender" value ="NON binary">
+        <label class="r3" for="nonbinary">Non binary</label>
+        </div>
+        <div class="d3">
+            <h2>Hobbies</h2>
+        <input type="checkbox" id="hobby1" name="hobby1" value="soccer">
+        <label  class="c1" for="hobby1">playing Football</label></br>
+        <input class="i1" type="checkbox" id="hobby2" name="hobby2" value="Basketball">
+        <label class="c2"  for="hobby2">playing basketball</label></br>
+        <input class="i2" type="checkbox" id="hobby3" name ="hobby3" value="table_tennis">
+        <label class="c3"  for ="hobby3">playing Table tennis</label></br>
+        <input class="i3"  type="checkbox" id="hobby4" name = "hobby4" value="games">
+        <label class="c4"  for="hobby4">playing video games</label></br>
+        </div>
+        <div class="d4">
+        <label for="state_of_origin"><h2>State of origin</h2/label></br>
+        <select name="state_of_origin" id="state_of_origin">
+            <option value="Abia">Abia</option>
+            <option value="Adamawa">Adamawa</option>
+            <option value="Akwa_ibom">Akwa ibom</option>
+            <option value="Anambra">Anambra</option>
+            <option value="Bauchi">Bauchi</option>
+            <option value="Bayelsa">Bayelsa</option>
+            <option value="Benue">Benue</option>
+            <option value="Borno">Borno</option>
+            <option value="Cross river">Cross River</option>
+            <option value="Delta">Delta</option>
+            <option value="Ebonyi">Ebonyi</option>
+            <option value="Edo">Edo</option>
+            <option value="Ekiti">Ekiti</option>
+            <option value="Enugu">Enugu</option>
+            <option value="Gombe">Gombe</option>
+            <option value="Imo">Imo</option>
+            <option value="Jigawa">Jigawa</option>
+            <option value="kaduna">Kaduna</option>
+            <option value="Kano">kano</option>
+            <option value="Katsina">katsina</option>
+            <option value="Kebbi">Kebbi</option>
+            <option value="Kogi">Kogi</option>
+            <option value="Kwara">Kwara</option>
+            <option value="Lagos">lagos</option>
+            <option value="Nasarawa">Nasarawa</option>
+            <option value="Niger">Niger</option>
+            <option value="Ogun">Ogun</option>
+            <option value="Ondo">Ondo</option>
+            <option value="osun">Osun</option>
+            <option value="Oyo">Oyo</option>
+            <option value="Plateau">Plateau</option>
+            <option value="Rivers">Rivers</option>
+            <option value="Sokoto">Sokoto</option>
+            <option value="Taraba">Taraba</option>
+            <option value="Yobe">Yobe</option>
+            <option value="Zamfara">Zamfara</option>
+        </select>
+        </div>
+        <div class ="d5">
+             <input type="SUBMIT" value="Create account" onClick="validate()" />
+             </div>
+    </form>
+    <script type="text/javascript">  
+    function validate(){  
+    var n=document.getElementById("firstname").value;   
+    var p=document.getElementById("email").value;  
+    var cp=document.getElementById("phoneno").value;  
+      //Code for password validation  
+    var letters = /^[A-Za-z]+$/;  
+    var email_val = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;  
+    var phone_no =/^[0-9]+$/;
+    //other validations required code  
+    if(n==''||p==''||cp==''){  
+                alert("Enter each detail correctly");  
+    }  
+    else if(!letters.test(n))  
+            {  
+                alert('Name is incorrect must contain alphabets only');  
+            }  
+    else if (!email_val.test(p))  
+            {  
+                alert('Invalid email format please enter valid email id');  
+            } 
+    else if(!phone_no.test(cp)) 
+             {
+                alert('enter a valid phone number');
+             }
+    
+    else{  
+                alert("welcome, Your account has been created successfully");  
+    
+    }  
+    }
+    </script>
+ </div>
+</body>
