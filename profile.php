@@ -1,3 +1,70 @@
+<?PHP
+
+use LDAP\Result;
+
+    //defining default value
+    $lname = "Doe";
+    $fname = "John"; 
+    $gender ="Non-Binary";
+    $email = "whoIsit@mail.com";
+    $mob_NO = "0000 0000 0000";
+    $state = "York";
+    $address = "23 yore ke";
+    $married ='Single';
+    $hobbies ="Reading, Dancing, reading";
+
+    session_start();
+
+    include("config.php");
+     if(!isset($_SESSION['userid'])){
+         header('location:login.php');
+         exit;
+     }else{
+         //get all the user data with email as key
+         $userid = $_SESSION['userid'];
+         $query = $conn->prepare("SELECT * FROM userTB WHERE userid = :userid");
+         $query->bindParam("userid",$userid,PDO::PARAM_STR);
+         $query->execute();
+
+         $result = $query->fetch(PDO::FETCH_ASSOC);
+
+         //Assign fetched data to their variable
+         if(!$result){
+             echo '<p>welcome to you profile</p>';
+            }else{
+                $lname = $result['lname'];
+                $fname = $result['fname']; 
+                $gender =$result['gender'];
+                $email = $result['email'];
+                $mob_NO = $result['phone_No'];
+                $state = $result['state'];
+                $address = $result['address'];
+                $married =$result['marital_status'];
+                $hobbies = $result['hobbies'];
+                
+                if(isset($_POST['edit'])){
+                    //assign session variable for the next page
+                $_SESSION['userid'] = $result['userid'];
+                $_SESSION['lname'] = $result['lname'];
+                $_SESSION['fname'] = $result['fname']; 
+                $_SESSION['gender'] =$result['gender'];
+                $_SESSION['email'] = $result['email'];
+                $_SESSION['mob_NO'] = $result['phone_No'];
+                $_SESSION['state'] = $result['state'];
+                $_SESSION['address'] = $result['address'];
+                $_SESSION['married'] =$result['marital_status'];
+                $_SESSION['hobbies'] = $result['hobbies'];
+                
+                // linking next page
+                header('location: edit_form.php');
+                }
+            }
+        }
+
+
+?>
+
+<!-- display html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,19 +75,19 @@
     <title>profile</title>
 </head>
 <body>
-    <header>
-    <nav>
-    <div class="logo">
-    <img src="" alt="">
-    <H1>PalmBock</H1></div>
-    <ul class="navi">
-     <li><a href="#">HOME</a></li>
-     <li><a href="#">PROFILE</a></li>
-     <li><a href="#">USERS</a></li>
-     <li><a href="#">LOGIN</a></li>
-     <li><a href="#">REGISTER</a></li>
-    </ul>
-    </nav>
+<header>
+      <nav>
+        <div class="logo">
+          <h1>PalmBock</h1>
+        </div>
+        <ul class="navi">
+          <li><a href="./index.html">HOME</a></li>
+          <li><a href="./profile.php">PROFILE</a></li>
+          <li><a href="./#">USERS</a></li>
+          <li><a href="./login.php">LOGIN</a></li>
+          <li><a href="./register.php">REGISTER</a></li>
+        </ul>
+      </nav>
     </header>
     <main>
     <section>
@@ -33,45 +100,13 @@
                 <div>
 
                     <img id='avatar' src="./images/pexels-creation-hill-1681010.jpg" alt="Profile Avatar">
-                    <p> <span>Joe Doe</span> </br>
+                    <p> <span><?php echo "$fname $lname" ?></span> </br>
                     You are welcome</p>
                 </div>
             </div>
-            <div class="profile-items">
-                <table>
-                <tr>
-                    <td>Name</td> <td>Joe Doe</td>
-                </tr>
-                <tr>
-                    <td>Mobile Number</td> <td>0000 0000 000</td>
-                </tr>
-                <tr>
-                    <td>Email</td> <td>joedoe@mail.com</td>
-                </tr>
-                <tr>
-                    <td>Address</td> <td>Hall Mark Street</td>
-                </tr>
-                <tr>
-                    <td>Gender</td> <td>Non-Binary</td>
-                </tr>
-                <tr>
-                    <td>Marital Status</td> <td>Single</td>
-                </tr>
-                <tr>
-                    <td>State of Origin</td> <td>Yoke</td>
-                </tr>
-                <tr>
-                    <td>Gender</td> <td>Non-Binary</td>
-                </tr>
-                <tr>
-                    <td>hobbies</td> <td>Danding, reading, writing  singing</td>
-                </tr>
-                
-                
-                </table>
-                <button type="submit" id= 'edit'>Edit Profile</button>
-            </div>
-
+            <!-- calling table and values from table template  -->
+            <?php include('table_temp.php');
+            echo "$content"?>
         </div>
     </div>
     </section>

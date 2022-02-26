@@ -1,12 +1,13 @@
-<?php include("loginpage.php");?>
+<?php
+ include("loginpage.php");?>
 
 <?php
 
-
+/*
 $mail = $password = "";
 if ($_SERVER['REQUEST_METHOD']=='POST'){
     $mail = test_input($_POST["email"]);
-    $password = test_input($_POST["pass"]);
+    $password = password_hash(test_input($_POST["pass"]), PASSWORD_BCRYPT);
 
 
 }
@@ -38,10 +39,36 @@ function test_input($pass){
     return $pass;
 }
 ?>
+*/
 
 <?php
 include("db.php");
 
+$mail = $password = "";
+$MAIL_ERROR = $PASSWORD_ERROR ="";
+
+if(isset($_POST['login'])){
+    $mail = test_input($_POST['email']);
+    $password = password_hash(test_input($_POST['password']), PASSWORD_BCRYPT);
+    $query = $conn->prepare("select * from userTB where email = :email and pass = :password");
+    $query->bindParam("email",$mail, PDO::PARAM_STR);
+    $query->bindParam("password",$password,PDO::PARAM_STR);
+    $query->execute();
+    
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+    if(!$result){
+        $MAIL_ERROR=  'Incorrect Email';
+    }else{
+        if(password_verify($passw, $result['pass'])){ //conparing password
+            $_SESSION['user_id'] = $result['user_id'];//setting session identifier
+            header("location: profile.php");// link to the next page
+        }else{
+            $PASSWORD_ERROR = 'incorrect password';
+        }
+    }
+
+
+}
 
 ?>
-   
+   ++++++++++++

@@ -29,6 +29,7 @@ h3 {
 }
 
 a {
+  font-size: 1.5rem;
   text-decoration: none;
 }
 
@@ -74,9 +75,40 @@ button {
 
 /*header*/
 header {
-  text-align: center;
-  color: rgb(115, 16, 124);
-  padding: 2.2rem;
+  z-index: 34;
+  position: sticky;
+  top: 0%;
+}
+/* Navigation */
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 7vh;
+  padding: 1rem 1rem;
+  position: sticky;
+  top: 0%;
+  color: white;
+  background: rgb(84, 63, 199);
+}
+
+.logo {
+  flex: 1 1 20rem;
+}
+nav ul {
+  list-style: none;
+  flex: 1 2 20rem;
+  display: flex;
+  justify-items: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+nav a {
+  color: white;
+}
+nav ul li {
+  flex: 1 1 5rem;
 }
 
 /*form*/
@@ -89,7 +121,7 @@ fieldset {
   flex-wrap: nowrap;
   border-radius: 1.5rem;
   width: 40%;
-  margin: auto;
+  margin: 5rem auto;
   padding-bottom: 0.5rem;
   -webkit-border-radius: 1.5rem;
   -moz-border-radius: 1.5rem;

@@ -1,3 +1,71 @@
+
+<?php $fname = $lname = $mob_no = $email = $address = $password =$gender = $married =$state =$hobby ="";
+?>
+
+<?php
+     
+     session_start();
+     include('config.php');
+     if(isset($_POST['submit'])){
+        $fname = $_POST['firstName'];
+        $lname = $_POST['surname']; 
+        $mob_no = $_POST['number'];
+        $email = $_POST['email'];
+        $address = $_POST['address'];
+        $gender = $_POST['gender'];
+        $married = $_POST['marital-status'];
+        $state = $_POST['State-Of-Origin'];
+        $hobby = $_POST['hobbies'];
+
+        if($_POST['passwrd1'] === $_POST['passwrd2']){
+
+            $password = password_hash($_POST['passwrd1'], PASSWORD_BCRYPT); 
+        }else{
+            echo "<script> alert('Your Password does not match Please check password and re-enter ') </script>" ;
+     }
+     $query = $conn->prepare("SELECT * FROM userTB WHERE email=:email");
+     $query->bindParam("email", $email, PDO::PARAM_STR);
+     $query->execute();   
+
+      if ($query->rowCount() > 0) {
+         echo '<p class="error">The email address is already registered!</p>';
+     }else if($query->rowCount() == 0) {
+         $query = $conn->prepare("INSERT into userTB (address,email,fname,gender,hobbies,lname,marital_status, pass,phone_No,state) 
+         VALUES (:address,:email,:fname,:gender,:hobbies,:lname,:marital_status, :pass,:phone_No,:state)");
+         $query->bindParam("address", $address, PDO::PARAM_STR);
+         $query->bindParam("lname", $lname, PDO::PARAM_STR);
+         $query->bindParam("fname", $fname, PDO::PARAM_STR);
+         $query->bindParam("gender", $gender, PDO::PARAM_STR);
+         $query->bindParam("hobbies", $hobby, PDO::PARAM_STR);
+         $query->bindParam("marital_status", $married, PDO::PARAM_STR);
+         $query->bindParam("phone_No", $mob_no, PDO::PARAM_STR);
+         $query->bindParam("pass", $password, PDO::PARAM_STR);
+         $query->bindParam("email", $email, PDO::PARAM_STR);
+         $query->bindParam("state", $state, PDO::PARAM_STR);
+
+         $result = $query->execute();
+
+         if ($result) {
+          header("location: loginval.php");
+             echo "<script >alert('Your registration was successful!')</script>";
+         } else {
+             echo "<script >alert('Something went wrong!')</script>";
+             $password="";
+         }
+     }
+
+
+    // //sending us back to the registration page
+    // header("location: register.php");
+    }
+?>
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,15 +78,22 @@
     <title>BockPlam registration page</title>
   </head>
   <body>
-    <header>
-      <a href="./index.html">
-        <h1>BockPlam</h1>
-      </a>
+  <header>
+    <nav>
+    <div class="logo">
+    <H1>PalmBock</H1></div>
+    <ul class="navi">
+     <li><a href="#">HOME</a></li>
+     <li><a href="#">PROFILE</a></li>
+     <li><a href="#">USERS</a></li>
+     <li><a href="#">LOGIN</a></li>
+     <li><a href="#">REGISTER</a></li>
+    </ul>
+    </nav>
     </header>
-    
     <section class="form">
       <form
-        action="./user.php"
+        action=""
         method="POST"
     
         class="registration-form"
@@ -36,6 +111,8 @@
                 type="text"
                 name="firstName"
                 placeholder="First name"
+                value="<?php echo $fname;?>"
+                pattern="[a-zA-Z0-9]+"
                 required
               />
             </div>
@@ -43,7 +120,9 @@
               <input
                 type="text"
                 name="surname"
+                value="<?php echo $lname;?>"
                 placeholder="Surname"
+                pattern="[a-zA-Z0-9]+"
                 required
               />
             </div>
@@ -53,6 +132,8 @@
               type="text"
               name="number"
               id="number"
+              value="<?php echo $mob_no;?>"
+              pattern="[0-9]+"
               placeholder="Mobile number"
               required
             />
@@ -63,6 +144,7 @@
               name="email"
               id="email"
               placeholder="Email address"
+              value="<?php echo $email;?>"
               required
             />
 
@@ -73,6 +155,8 @@
               name="address"
               id="address"
               placeholder="Address"
+              pattern="[a-zA-Z0-9]+"
+              value="<?php echo $address;?>"
               required
             />
           </div>
@@ -139,15 +223,15 @@
             <div class="gender">
               <button id="female">
                 Female
-                <input type="radio" name="gender" id="Female" value="Female" />
+                <input type="radio" name="gender" id="Female" <?php if (isset($gender) && $gender=="Female") echo "checked";?> value="Female" />
               </button>
               <button id="male">
                 Male
-                <input type="radio" name="gender" id="Male" value="Male" />
+                <input type="radio" name="gender" id="Male" <?php if (isset($gender) && $gender=="Male") echo "checked";?> value="Male" />
               </button>
-              <button id="custom">
+              <button id="custom">.
                 Custom
-                <input type="radio" name="gender" id="Custom" value="Non-Binary" />
+                <input type="radio" name="gender" <?php if (isset($gender) && $gender=="Non-Binary") echo "checked";?> id="Custom" value="Non-Binary" />
               </button>
             </div>
           </div>
@@ -156,15 +240,15 @@
             <div class="maritals">
               <button id="Married">
                 Married
-                <input type="radio" name="marital-status" id="married" value="Female" />
+                <input type="radio" name="marital-status" <?php if (isset($married) && $married=="Married") echo "checked";?>id="married" value="Married" />
               </button>
               <button id="Single">
                 Single
-                <input type="radio" name="marital-status" id="single" value="Single" />
+                <input type="radio" name="marital-status" <?php if (isset($married) && $married=="Single") echo "checked";?> id="single" value="Single" />
               </button>
               <button id="Devoiced">
                 Devoiced
-                <input type="radio" name="marital-status" id="devoiced" value="Devoiced" />
+                <input type="radio" name="marital-status" <?php if (isset($married) && $married=="Devoiced") echo "checked";?> id="devoiced" value="Devoiced" />
               </button>
             </div>
             
@@ -173,6 +257,41 @@
               <select name="State-Of-Origin" id="state" >
                 <option value=""> Select your State of origin</option>
                 <option value="Abia">Abia</option>
+                <option value="Adamawa">Adamawa</option>
+                <option value="Akwa_ibom">Akwa ibom</option>
+                <option value="Anambra">Anambra</option>
+                <option value="Bauchi">Bauchi</option>
+                <option value="Bayelsa">Bayelsa</option>
+                <option value="Benue">Benue</option>
+                <option value="Borno">Borno</option>
+                <option value="Cross river">Cross River</option>
+                <option value="Delta">Delta</option>
+                <option value="Ebonyi">Ebonyi</option>
+                <option value="Edo">Edo</option>
+                <option value="Ekiti">Ekiti</option>
+                <option value="Enugu">Enugu</option>
+                <option value="Gombe">Gombe</option>
+                <option value="Imo">Imo</option>
+                <option value="Jigawa">Jigawa</option>
+                <option value="kaduna">Kaduna</option>
+                <option value="Kano">kano</option>
+                <option value="Katsina">katsina</option>
+                <option value="Kebbi">Kebbi</option>
+                <option value="Kogi">Kogi</option>
+                <option value="Kwara">Kwara</option>
+                <option value="Lagos">lagos</option>
+                <option value="Nasarawa">Nasarawa</option>
+                <option value="Niger">Niger</option>
+                <option value="Ogun">Ogun</option>
+                <option value="Ondo">Ondo</option>
+                <option value="osun">Osun</option>
+                <option value="Oyo">Oyo</option>
+                <option value="Plateau">Plateau</option>
+                <option value="Rivers">Rivers</option>
+                <option value="Sokoto">Sokoto</option>
+                <option value="Taraba">Taraba</option>
+                <option value="Yobe">Yobe</option>
+                <option value="Zamfara">Zamfara</option>
               </select>
             </div>
             </div>
@@ -199,6 +318,7 @@
                 type="password"
                 name="passwrd1"
                 id="pass"
+                value="<?php echo $password;?>"
                 placeholder="Enter password"
                 required
               />
@@ -207,7 +327,8 @@
                 <input
                   type="password"
                   name="passwrd2"
-                  id="pass"
+                  id="pass1"
+                  value="<?php echo $password;?>"
                   placeholder="Re-Enter password"
                   required
                 />
@@ -220,10 +341,13 @@
             <a href="#">Cookie Policy</a> Cookie Policy. You may receive SMS
             notifications from us and can opt out at any time.
           </p>
-          <button type="submit" id='signup'>Sign up</button>
-          <p><a href="./login.html" target="_self">Already have an account?</a></p>
+          <button type="submit" name="submit" id='signup'>Sign up</button>
+          <p><a href="./login.php" target="_self">Already have an account?</a></p>
         </fieldset>
       </form>
     </section>
      </body>
 </html>
+
+
+

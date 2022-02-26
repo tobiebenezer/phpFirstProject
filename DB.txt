@@ -1,0 +1,30 @@
+CREATE TABLE Married(
+    marital_status_id  int PRIMARY KEY AUTO_INCREMENT not null,
+    marital_status varchar(8) not null);
+    
+CREATE TABLE state(
+    state_id int PRIMARY KEY AUTO_INCREMENT not null,
+    state text not null);
+    
+ CREATE TABLE hobby(
+     hobby_id int PRIMARY KEY AUTO_INCREMENT not null,
+     hobbies text not null);
+     
+CREATE TABLE Gender(
+    gender_id int primary key AUTO_INCREMENT not null,
+    gender text not null);
+    
+CREATE TABLE Profile_id(
+    user_id int not null,
+    password text not null,
+    marital_status_id  int not null,
+    state_id int not null,
+    hobby_id int not null,
+    address_id int not null,
+    gender_id int not null,
+    PRIMARY KEY (user_id, password),
+    FOREIGN KEY (marital_status_id) REFERENCES Married(marital_status_id),
+    FOREIGN KEY (state_id) REFERENCES state(state_id),
+    FOREIGN KEY (hobby_id) REFERENCES hobby(hobby_id),
+    FOREIGN KEY (address_id) REFERENCES address(address_id),
+    FOREIGN KEY (gender_id) REFERENCES Gender(gender_id));
