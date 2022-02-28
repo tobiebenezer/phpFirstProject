@@ -1,16 +1,29 @@
 <html>
 <body>
 <?php 
-$username = "root"; 
-$password = "password"; 
-$database = "clientDB"; 
-$mysqli = mysqli_connect("localhost", $username, $password, $database); 
-$query = "SELECT * FROM userTB";
-$sqldata = mysqli_query($mysqli,$query) or die ('error');
+$host ="localhost";
+$username="root";
+$password ="";
+$dbname = "clientDB";
+$connect = "utf8mb4";
+
+$masn= "mysql:host=$host;dbname=$dbname;charset=$connect";
+try {
+
+    $db = new PDO($masn, $username, $password);
+     echo"connected";
+
+     
+     }
+catch(PDOException){
+    throw new PDOException;
+     echo "failed connection";
+}
+$QUERYS = $db->query($query);    
 
 
 echo "<table>";
-echo "<tr><th>user_id</th><th>fname</th><th>lname</th><th>mob_no</th><th>email</th><th>Profile_pic</th><th>cv</th></tr>";
+echo "<tr><th>user_id</th><th>email</th><th>name</th><th>password</th><th></th><th></th><th></th></tr>";
 
 while ($row = mysqli_fetch_array($sqldata, MYSQL_ASSOC)) {
       echo "<tr><td>";
